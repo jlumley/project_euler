@@ -5,22 +5,23 @@ int nextPrime(int);
 int numberOfFactors(int);
 
 int main (int argc, char const *argv[]) {
-    size_t num, result = 0;
+    size_t num = 6;
 
-    numberOfFactors(1000);
-    return 0;
-    for (int n = 1; 1==1; n ++) {
+    for (int n = 4; 1==1; n ++) {
         num += n;
-        if (numberOfFactors(num) > 500){
+        int factors = numberOfFactors(num);
+        //printf("factors: %d\n", factors);
+        if (factors > 500){
+            printf("triangle number: %d\n", n);
+            printf("value: %zu\n", num);
             break;
-            printf("%d\n", n);
         }
     }
     return 0;
 }
 
 int nextPrime(int prime) {
-    for (int nextPrime=prime+2; nextPrime < 15; nextPrime++) {
+    for (int nextPrime=prime+1; 1==1; nextPrime++) {
         int isPrime = 1;
         for (int i = 2; i <= sqrt(nextPrime); i++) {
             if (nextPrime%i == 0) {
@@ -41,15 +42,19 @@ int numberOfFactors (int n) {
     int factors = 1;
     int temp = 1;
     while (n >= 1) {
-        if (n%prime == 0) {
-            printf("%d\n", n);
+        //printf("n: %d\n", n);
+        //printf("prime: %d\n", prime);
+        if (n == 1) {
+            factors *=2;
+            return factors;
+        } else if (n%prime == 0) {
             temp++;
             n = n/prime;
         } else {
-            factors = factors * temp;
-            temp = 1;
             prime = nextPrime(prime);
+            factors *= temp;
+            temp = 1;
         }
     }
-    return factors+2;
+    return factors;
 }
